@@ -1,0 +1,79 @@
+{
+    "weddingDate": "2025-12-31T11:00:00",
+    "couple": {
+        "groom": {
+            "name": "Văn Tài",
+            "image": "assets/img/groom.jpg",
+            "job": "Kỹ sư Điện Lực",
+            "jobIcon": "fa-bolt",
+            "desc": "Chàng kỹ sư mang ánh sáng đến muôn nơi, nhưng ánh sáng rực rỡ nhất đời anh chính là nụ cười của Thu Thảo.",
+            "bank": {
+                "qr": "assets/img/qr-groom.jpg",
+                "bankName": "Vietcombank",
+                "number": "0123456789",
+                "accountName": "NGUYEN VAN TAI"
+            }
+        },
+        "bride": {
+            "name": "Thu Thảo",
+            "image": "assets/img/bride.jpg",
+            "job": "Giáo viên Tiếng Anh",
+            "jobIcon": "fa-book-open",
+            "desc": "Cô giáo dịu dàng gieo mầm tri thức. 'Teaching is a work of heart', và yêu anh cũng là việc của con tim.",
+            "bank": {
+                "qr": "assets/img/qr-bride.jpg",
+                "bankName": "Techcombank",
+                "number": "9876543210",
+                "accountName": "TRAN THI THU THAO"
+            }
+        }
+    },
+    "family": {
+        "groom": {
+            "father": "Nguyễn Văn A",
+            "mother": "Trần Thị B",
+            "address": "Xã Hải Đường, Huyện Hải Hậu, Nam Định"
+        },
+        "bride": {
+            "father": "Phạm Văn C",
+            "mother": "Lê Thị D",
+            "address": "Xã Xuân Ninh, Huyện Xuân Trường, Nam Định"
+        }
+    },
+    "story": [
+        {
+            "title": "Lần đầu gặp gỡ",
+            "date": "15/06/2020",
+            "content": "Tình cờ gặp nhau tại thư viện tỉnh Nam Định...",
+            "side": "left"
+        },
+        {
+            "title": "Lời tỏ tình",
+            "date": "20/11/2022",
+            "content": "Ngày Nhà giáo Việt Nam, chàng kỹ sư đã lấy hết can đảm tỏ tình cô giáo.",
+            "side": "right"
+        },
+        {
+            "title": "Về chung một nhà",
+            "date": "31/12/2025",
+            "content": "Chúng mình quyết định gắn kết trọn đời vào ngày cuối cùng của năm.",
+            "side": "left"
+        }
+    ],
+    "events": {
+        "groom": {
+            "title": "Tiệc Cưới Nhà Trai",
+            "time": "11:00 - 31/12/2025",
+            "place": "Tư gia nhà trai",
+            "address": "Xã Hải Đường, Huyện Hải Hậu, Nam Định",
+            "mapLink": "https://goo.gl/maps/example"
+        },
+        "bride": {
+            "title": "Lễ Vu Quy (Nhà Gái)",
+            "time": "09:00 - 30/12/2025",
+            "place": "Tư gia nhà gái",
+            "address": "Xã Xuân Ninh, Huyện Xuân Trường, Nam Định",
+            "mapLink": "https://goo.gl/maps/example"
+        }
+    }
+}
