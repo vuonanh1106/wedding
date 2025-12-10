@@ -3,16 +3,18 @@
 /* ======================================= */
 :root {
     /* --- BẢNG MÀU PASTEL --- */
-    --primary-color: #ffabc2; /* Hồng phấn (Soft Pink) */
-    --primary-dark: #f080a0;  /* Hồng đậm hơn cho chữ */
-    --secondary-color: #e3f2fd; /* Xanh da trời nhạt (Soft Blue) */
-    --bg-gradient: linear-gradient(135deg, #fff5f8 0%, #f0f8ff 100%); /* Gradient nền */
+    --primary-color: #ffabc2; /* Hồng phấn */
+    --primary-dark: #f080a0;  /* Hồng đậm */
+    --secondary-color: #e3f2fd; /* Xanh nhạt */
+    --bg-gradient: linear-gradient(135deg, #fff5f8 0%, #f0f8ff 100%);
     
     --text-dark: #555;
     --text-light: #fff;
-    --font-heading: 'Great Vibes', cursive;
-    --font-body: 'Montserrat', sans-serif;
-    --font-serif: 'Playfair Display', serif;
+    
+    /* --- FONT CHỮ MỚI MỀM MẠI HƠN --- */
+    --font-heading: 'Great Vibes', cursive; /* Cho tên Cô dâu Chú rể */
+    --font-body: 'Nunito Sans', sans-serif; /* Cho văn bản thường (tròn trịa hơn) */
+    --font-serif: 'Playfair Display', serif; /* Cho các trích dẫn sang trọng */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,29 +25,40 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background: var(--bg-gradient);
-    background-attachment: fixed; /* Giữ nền cố định rất đẹp */
+    background-attachment: fixed;
     overflow-x: hidden;
+    font-weight: 300; /* Chữ mảnh mai hơn */
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .section-padding { padding: 80px 0; }
 
-/* Nền xen kẽ các section */
 .bg-gray {
     background-color: var(--secondary-color);
     background-image: linear-gradient(to bottom, #e3f2fd, #ffffff);
 }
 
 .section-header { text-align: center; margin-bottom: 50px; }
-.section-header h2 { font-family: var(--font-heading); font-size: 3.5rem; color: var(--primary-dark); margin-bottom: 10px; }
-.section-header p { font-family: var(--font-serif); font-style: italic; color: #777; }
+.section-header h2 { 
+    font-family: var(--font-heading); 
+    font-size: 3.8rem; /* Tăng kích thước tiêu đề */
+    color: var(--primary-dark); 
+    margin-bottom: 10px; 
+    font-weight: 400;
+}
+.section-header p { 
+    font-family: var(--font-serif); 
+    font-style: italic; 
+    color: #777; 
+    font-size: 1.1rem;
+}
 
 /* 1. NAVBAR */
-.navbar { position: fixed; width: 100%; top: 0; background: rgba(255, 255, 255, 0.95); z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.navbar { position: fixed; width: 100%; top: 0; background: rgba(255, 255, 255, 0.98); z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
 .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
 .logo { font-family: var(--font-heading); font-size: 2rem; color: var(--primary-dark); text-decoration: none; }
 .nav-menu { list-style: none; display: flex; gap: 20px; }
-.nav-menu li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+.nav-menu li a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
 .nav-menu li a:hover { color: var(--primary-dark); }
 .nav-btn { background: var(--primary-color); color: #fff !important; padding: 8px 20px; border-radius: 20px; }
 .hamburger { display: none; cursor: pointer; }
@@ -54,78 +67,110 @@ body {
 /* 2. HERO */
 header {
     height: 100vh;
-    /* Nhớ thay ảnh bìa ở đây */
+    /* Bạn nhớ thay đường dẫn ảnh nền tại đây */
     background: url('../../assets/img/hero-bg.jpg') no-repeat center center/cover;
     position: relative; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;
 }
 .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); }
 .hero-content { position: relative; z-index: 2; }
-.sub-title { letter-spacing: 3px; text-transform: uppercase; font-size: 1.2rem; }
-.main-title { font-family: var(--font-heading); font-size: 5rem; margin: 10px 0; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-.main-title span { font-family: var(--font-serif); font-style: italic; font-size: 3rem; }
-.wedding-date { font-size: 1.5rem; margin-bottom: 30px; }
+.sub-title { letter-spacing: 4px; text-transform: uppercase; font-size: 1.1rem; margin-bottom: 10px; }
+.main-title { 
+    font-family: var(--font-heading); 
+    font-size: 5.5rem; 
+    margin: 10px 0; 
+    color: #fff; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+    line-height: 1.2;
+}
+.main-title .ampersand { font-family: var(--font-serif); font-size: 3rem; font-style: italic; vertical-align: middle; }
+.wedding-date { font-size: 1.5rem; margin-bottom: 40px; font-weight: 300; letter-spacing: 2px; }
 
 /* Countdown */
 #countdown { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 .time-box { background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); padding: 15px 25px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.4); min-width: 90px; }
 .time-box span { font-size: 2.5rem; font-weight: bold; display: block; }
-.time-box p { font-size: 0.9rem; text-transform: uppercase; margin-top: 5px; }
+.time-box p { font-size: 0.8rem; text-transform: uppercase; margin-top: 5px; letter-spacing: 1px; }
 
-/* 3. COUPLE & JOB TITLE */
+/* 3. COUPLE */
 .couple-wrapper { display: flex; justify-content: center; align-items: center; gap: 50px; text-align: center; margin-top: 30px; }
-.img-box { width: 220px; height: 220px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 5px solid var(--primary-color); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.img-box { width: 220px; height: 220px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 5px solid var(--primary-color); box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.5s; }
+.couple-card:hover .img-box { transform: scale(1.05); }
 .img-box img { width: 100%; height: 100%; object-fit: cover; }
-.couple-card h3 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--primary-dark); }
-.job-title { color: var(--primary-dark); font-weight: 600; margin: 5px 0 15px; font-size: 0.95rem; }
-.desc { font-style: italic; max-width: 300px; margin: 0 auto; color: #666; font-size: 0.9rem; }
+.couple-card h3 { font-family: var(--font-serif); font-size: 2rem; color: var(--primary-dark); margin-bottom: 5px; }
+.job-title { color: var(--primary-dark); font-weight: 700; margin: 5px 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+.desc { font-style: italic; max-width: 300px; margin: 0 auto; color: #666; font-size: 1rem; line-height: 1.8; }
 .heart-center { font-size: 3rem; color: var(--primary-color); animation: pulse 1.5s infinite; }
 
-/* 4. FAMILY (NEW STYLE) */
-.family-grid { display: flex; justify-content: center; gap: 50px; margin-top: 20px; flex-wrap: wrap; }
+/* 4. FAMILY */
+.family-grid { display: flex; justify-content: center; gap: 40px; margin-top: 20px; flex-wrap: wrap; }
 .family-card { 
     background: #fff; padding: 40px 30px; border-radius: 15px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 380px; text-align: center; 
-    border-top: 5px solid var(--primary-color); transition: transform 0.3s; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05); width: 380px; text-align: center; 
+    border-top: 4px solid var(--primary-color); transition: transform 0.3s; 
 }
 .family-card:hover { transform: translateY(-10px); }
-.family-card h3 { font-family: var(--font-heading); font-size: 2rem; color: var(--primary-dark); margin-bottom: 20px; }
+.family-card h3 { font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary-dark); margin-bottom: 25px; }
 .parents-info { margin: 20px 0; text-align: left; padding-left: 20px; border-left: 3px solid var(--secondary-color); }
-.parent-role { font-size: 0.9rem; color: #888; margin-bottom: 2px; margin-top: 10px; text-transform: uppercase; font-weight: 600; }
-.parent-name { font-size: 1.2rem; margin-bottom: 5px; color: var(--text-dark); font-family: var(--font-serif); }
+.parent-role { font-size: 0.85rem; color: #999; margin-bottom: 2px; margin-top: 12px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
+.parent-name { font-size: 1.25rem; margin-bottom: 5px; color: var(--text-dark); font-family: var(--font-serif); font-weight: bold; }
 .address { color: #666; font-style: italic; margin-top: 25px; font-size: 0.95rem; border-top: 1px dashed #eee; padding-top: 15px; }
 
-/* 5. EVENT & OTHER SECTIONS */
+/* 5. TIMELINE & EVENTS */
 .timeline-item::after { background: var(--primary-color); }
 .timeline::after { background: var(--secondary-color); }
 
 .event-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-.event-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 400px; text-align: center; }
-.event-img img { width: 100%; height: 200px; object-fit: cover; }
-.event-info { padding: 25px; }
-.btn-outline { display: inline-block; padding: 8px 20px; border: 1px solid var(--primary-dark); color: var(--primary-dark); text-decoration: none; border-radius: 5px; margin-top: 15px; transition: 0.3s; }
-.btn-outline:hover { background: var(--primary-dark); color: #fff; }
+.event-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); width: 400px; text-align: center; transition: 0.3s; }
+.event-card:hover { transform: translateY(-5px); }
+.event-img img { width: 100%; height: 220px; object-fit: cover; }
+.event-info { padding: 30px; }
+.event-info h3 { font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 15px; }
+.btn-outline { display: inline-block; padding: 10px 25px; border: 1px solid var(--primary-dark); color: var(--primary-dark); text-decoration: none; border-radius: 30px; margin-top: 20px; transition: 0.3s; font-weight: 600; font-size: 0.9rem; }
+.btn-outline:hover { background: var(--primary-dark); color: #fff; box-shadow: 0 5px 15px rgba(240, 128, 160, 0.4); }
 
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-.gallery-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 5px; }
+/* 6. ALBUM ẢNH (MASONRY LAYOUT - THÔNG MINH) */
+.gallery-grid {
+    column-count: 3; /* Chia 3 cột */
+    column-gap: 20px; 
+    padding: 0 10px;
+}
+.gallery-item {
+    break-inside: avoid; /* Không cắt ảnh giữa chừng */
+    margin-bottom: 20px; 
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.gallery-item img {
+    width: 100%;
+    height: auto; /* Tự động theo tỉ lệ thật của ảnh */
+    display: block;
+    transition: transform 0.5s ease;
+}
+.gallery-item:hover img { transform: scale(1.03); filter: brightness(1.05); }
 
+/* 7. DONATE & RSVP */
 .donate-grid { display: flex; justify-content: center; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
-.donate-card { background: #fff; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.qr-code { width: 150px; height: 150px; margin: 15px 0; }
+.donate-card { background: #fff; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; }
+.qr-code { width: 160px; height: 160px; margin: 15px 0; border: 5px solid var(--secondary-color); border-radius: 10px; }
+.bank-info { font-family: 'Nunito Sans', sans-serif; font-size: 1.1rem; line-height: 1.8; color: #444; }
 
-/* 6. RSVP & FOOTER */
-#rsvp { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/img/rsvp-bg.jpg'); background-size: cover; color: #fff; text-align: center; }
-#rsvpForm { background: rgba(255,255,255,0.95); padding: 30px; max-width: 500px; margin: 30px auto 0; border-radius: 10px; color: #333; }
-.form-group { margin-bottom: 15px; }
-input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-.btn-submit { width: 100%; padding: 12px; background: var(--primary-color); color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-footer { background: #333; color: #fff; text-align: center; padding: 30px; }
+#rsvp { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../assets/img/rsvp-bg.jpg'); background-size: cover; background-position: center; color: #fff; text-align: center; }
+#rsvpForm { background: rgba(255,255,255,0.98); padding: 40px; max-width: 500px; margin: 40px auto 0; border-radius: 15px; color: #333; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+.form-group { margin-bottom: 20px; }
+input, select, textarea { width: 100%; padding: 12px 15px; border: 1px solid #eee; border-radius: 8px; font-family: 'Nunito Sans', sans-serif; background: #f9f9f9; transition: 0.3s; }
+input:focus, select:focus, textarea:focus { border-color: var(--primary-color); outline: none; background: #fff; }
+.btn-submit { width: 100%; padding: 15px; background: var(--primary-color); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 1.1rem; letter-spacing: 1px; transition: 0.3s; }
+.btn-submit:hover { background: var(--primary-dark); box-shadow: 0 5px 15px rgba(240, 128, 160, 0.4); }
 
-/* 7. MUSIC BUTTON */
-.music-control { position: fixed; bottom: 20px; right: 20px; width: 40px; height: 40px; background: var(--primary-color); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 99; animation: rotate 3s linear infinite; }
+/* 8. FOOTER & EXTRAS */
+footer { background: #333; color: #fff; text-align: center; padding: 50px 20px; }
+footer h3 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 10px; color: var(--primary-color); }
+
+.music-control { position: fixed; bottom: 25px; right: 25px; width: 45px; height: 45px; background: var(--primary-color); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 99; animation: rotate 4s linear infinite; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
 .music-control.paused { animation-play-state: paused; background: #ccc; }
 @keyframes rotate { 100% { transform: rotate(360deg); } }
 
-/* 8. HIỆU ỨNG TIM RƠI */
 .falling-hearts-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; }
 .heart-fall { position: absolute; top: -50px; color: var(--primary-color); opacity: 0; animation: fallDown linear forwards; filter: drop-shadow(0 2px 3px rgba(255, 171, 194, 0.5)); }
 @keyframes fallDown {
@@ -133,13 +178,17 @@ footer { background: #333; color: #fff; text-align: center; padding: 30px; }
     50% { opacity: 1; transform: translateY(50vh) rotate(180deg) translateX(20px); }
     100% { transform: translateY(110vh) rotate(360deg) translateX(-20px); opacity: 0; }
 }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
 /* RESPONSIVE */
+@media (max-width: 1024px) {
+    .gallery-grid { column-count: 2; }
+}
 @media (max-width: 768px) {
     .couple-wrapper, .family-grid, .event-grid { flex-direction: column; }
-    .main-title { font-size: 3rem; }
+    .main-title { font-size: 3.5rem; }
     .hamburger { display: block; }
-    .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: #fff; width: 100%; text-align: center; padding: 20px; transition: 0.3s; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+    .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: #fff; width: 100%; text-align: center; padding: 30px; transition: 0.3s; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
     .nav-menu.active { left: 0; }
+    .gallery-grid { column-count: 1; }
 }
