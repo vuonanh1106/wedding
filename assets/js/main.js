@@ -2,11 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // --- CẤU HÌNH GOOGLE FORM (ĐÃ CẬP NHẬT CHÍNH XÁC ID CỦA BẠN) ---
     const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScGw4jbQIgVrIIin7xhEdIg64X-Jt3eOcY6wnje_W2jPe087w/formResponse';
-    
-    const ENTRY_NAME = 'entry.1621575620';    // Tên
-    const ENTRY_PHONE = 'entry.1036267141';   // SĐT
-    const ENTRY_STATUS = 'entry.1284648260';  // Tham dự
-    const ENTRY_MESSAGE = 'entry.658808536';  // Lời chúc
+    const ENTRY_NAME = 'entry.1621575620';
+    const ENTRY_PHONE = 'entry.1036267141';
+    const ENTRY_STATUS = 'entry.1284648260';
+    const ENTRY_MESSAGE = 'entry.658808536';
 
     // 1. KHỞI TẠO AOS
     AOS.init({ duration: 1000, once: true });
@@ -44,16 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('brideMother').innerText = data.family.bride.mother;
         document.getElementById('brideAddress').innerText = data.family.bride.address;
 
-        // Timeline
+        // Timeline (ĐÃ BỎ ẢNH, CHỈ CÒN CHỮ)
         const timelineContainer = document.getElementById('storyTimeline');
         let storyHTML = '';
         data.story.forEach((item) => {
             const aosEffect = item.side === 'left' ? 'fade-right' : 'fade-left';
             storyHTML += `
                 <div class="timeline-item ${item.side}" data-aos="${aosEffect}">
-                    <div class="timeline-img"></div>
-                    <div class="timeline-content">
-                        <div class="story-img-box"><img src="${item.image}" alt="${item.title}"></div>
+                    <div class="timeline-img"></div> <div class="timeline-content">
                         <div class="story-text">
                             <h3>${item.title}</h3>
                             <span class="date">${item.date}</span>
