@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Thiệp mời đám cưới Văn Tài & Thu Thảo">
     <title>Văn Tài & Thu Thảo | Wedding Invitation</title>
     
     <link rel="stylesheet" href="assets/css/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -20,12 +19,8 @@
 
     <div class="falling-hearts-container"></div>
 
-    <div class="music-control" id="musicBtn">
-        <i class="fa-solid fa-music"></i>
-    </div>
-    <audio id="bgMusic" loop>
-        <source src="assets/music/wedding-song.mp3" type="audio/mp3">
-    </audio>
+    <div class="music-control" id="musicBtn"><i class="fa-solid fa-music"></i></div>
+    <audio id="bgMusic" loop><source src="assets/music/wedding-song.mp3" type="audio/mp3"></audio>
 
     <nav class="navbar">
         <div class="container nav-container">
@@ -39,11 +34,7 @@
                 <li><a href="#donate">Mừng cưới</a></li>
                 <li><a href="#rsvp" class="nav-btn">Xác nhận</a></li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
         </div>
     </nav>
 
@@ -51,8 +42,8 @@
         <div class="overlay"></div>
         <div class="hero-content" data-aos="fade-up">
             <p class="sub-title">We Are Getting Married</p>
-            <h1 class="main-title">Văn Tài <span>&</span> Thu Thảo</h1>
-            <p class="wedding-date">31 Tháng 12 Năm 2025</p>
+            <h1 class="main-title"><span id="heroGroom"></span> <span class="ampersand">&</span> <span id="heroBride"></span></h1>
+            <p class="wedding-date" id="heroDate"></p>
             
             <div id="countdown">
                 <div class="time-box"><span id="days">00</span><p>Ngày</p></div>
@@ -61,44 +52,36 @@
                 <div class="time-box"><span id="seconds">00</span><p>Giây</p></div>
             </div>
         </div>
-        <div class="scroll-down">
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
+        <div class="scroll-down"><i class="fa-solid fa-chevron-down"></i></div>
     </header>
 
     <section id="couple" class="section-padding">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Cô Dâu & Chú Rể</h2>
-                <p>Hai mảnh ghép hoàn hảo đã tìm thấy nhau</p>
+                <p>Mảnh ghép hoàn hảo của cuộc đời nhau</p>
             </div>
             
             <div class="couple-wrapper">
                 <div class="couple-card" data-aos="fade-right">
-                    <div class="img-box">
-                        <img src="assets/img/groom.jpg" alt="Chú rể Văn Tài">
-                    </div>
+                    <div class="img-box"><img id="groomImg" src="" alt="Chú rể"></div>
                     <div class="info">
-                        <h3>Văn Tài</h3>
+                        <h3 id="groomName"></h3>
                         <p class="role">Chú Rể</p>
-                        <p class="job-title"><i class="fa-solid fa-bolt"></i> Kỹ sư Điện Lực</p>
-                        <p class="desc">Chàng kỹ sư mang ánh sáng đến muôn nơi, nhưng ánh sáng rực rỡ nhất đời anh chính là nụ cười của Thu Thảo.</p>
+                        <p class="job-title" id="groomJob"></p>
+                        <p class="desc" id="groomDesc"></p>
                     </div>
                 </div>
 
-                <div class="heart-center" data-aos="zoom-in">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
+                <div class="heart-center" data-aos="zoom-in"><i class="fa-solid fa-heart"></i></div>
 
                 <div class="couple-card" data-aos="fade-left">
-                    <div class="img-box">
-                        <img src="assets/img/bride.jpg" alt="Cô dâu Thu Thảo">
-                    </div>
+                    <div class="img-box"><img id="brideImg" src="" alt="Cô dâu"></div>
                     <div class="info">
-                        <h3>Thu Thảo</h3>
+                        <h3 id="brideName"></h3>
                         <p class="role">Cô Dâu</p>
-                        <p class="job-title"><i class="fa-solid fa-book-open"></i> Giáo viên Tiếng Anh</p>
-                        <p class="desc">Cô giáo dịu dàng gieo mầm tri thức. "Teaching is a work of heart", và yêu anh cũng là việc của con tim.</p>
+                        <p class="job-title" id="brideJob"></p>
+                        <p class="desc" id="brideDesc"></p>
                     </div>
                 </div>
             </div>
@@ -116,24 +99,22 @@
                     <h3><i class="fa-solid fa-house"></i> Nhà Trai</h3>
                     <div class="parents-info">
                         <p class="parent-role">Bố chú rể:</p>
-                        <p class="parent-name">Ông <strong>Nguyễn Văn A</strong></p>
-                        
+                        <p class="parent-name">Ông <strong id="groomFather"></strong></p>
                         <p class="parent-role">Mẹ chú rể:</p>
-                        <p class="parent-name">Bà <strong>Trần Thị B</strong></p>
+                        <p class="parent-name">Bà <strong id="groomMother"></strong></p>
                     </div>
-                    <p class="address"><i class="fa-solid fa-location-dot"></i> Xã Hải Đường, Huyện Hải Hậu, Nam Định</p>
+                    <p class="address"><i class="fa-solid fa-location-dot"></i> <span id="groomAddress"></span></p>
                 </div>
 
                 <div class="family-card" data-aos="fade-left">
                     <h3><i class="fa-solid fa-house-chimney-window"></i> Nhà Gái</h3>
                     <div class="parents-info">
                         <p class="parent-role">Bố cô dâu:</p>
-                        <p class="parent-name">Ông <strong>Phạm Văn C</strong></p>
-                        
+                        <p class="parent-name">Ông <strong id="brideFather"></strong></p>
                         <p class="parent-role">Mẹ cô dâu:</p>
-                        <p class="parent-name">Bà <strong>Lê Thị D</strong></p>
+                        <p class="parent-name">Bà <strong id="brideMother"></strong></p>
                     </div>
-                    <p class="address"><i class="fa-solid fa-location-dot"></i> Xã Xuân Ninh, Huyện Xuân Trường, Nam Định</p>
+                    <p class="address"><i class="fa-solid fa-location-dot"></i> <span id="brideAddress"></span></p>
                 </div>
             </div>
         </div>
@@ -145,29 +126,8 @@
                 <h2>Chuyện Tình Yêu</h2>
                 <p>Hành trình từ người lạ thành người thương</p>
             </div>
-            <div class="timeline">
-                <div class="timeline-item left" data-aos="fade-right">
-                    <div class="content">
-                        <h3>Lần đầu gặp gỡ</h3>
-                        <span class="time">15/06/2020</span>
-                        <p>Tình cờ gặp nhau tại thư viện tỉnh Nam Định...</p>
-                    </div>
+            <div class="timeline" id="storyTimeline">
                 </div>
-                <div class="timeline-item right" data-aos="fade-left">
-                    <div class="content">
-                        <h3>Lời tỏ tình</h3>
-                        <span class="time">20/11/2022</span>
-                        <p>Ngày Nhà giáo Việt Nam, chàng kỹ sư đã lấy hết can đảm tỏ tình cô giáo.</p>
-                    </div>
-                </div>
-                 <div class="timeline-item left" data-aos="fade-right">
-                    <div class="content">
-                        <h3>Về chung một nhà</h3>
-                        <span class="time">31/12/2025</span>
-                        <p>Chúng mình quyết định gắn kết trọn đời vào ngày cuối cùng của năm.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -184,15 +144,13 @@
                         <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop" alt="Tiệc cưới">
                     </div>
                     <div class="event-info">
-                        <h3>Tiệc Cưới Nhà Trai</h3>
-                        <div class="event-time">
-                            <i class="fa-regular fa-clock"></i> 11:00 - 31/12/2025
-                        </div>
+                        <h3 id="eventGroomTitle"></h3>
+                        <div class="event-time"><i class="fa-regular fa-clock"></i> <span id="eventGroomTime"></span></div>
                         <div class="event-location">
-                            <i class="fa-solid fa-location-dot"></i> Tư gia nhà trai
-                            <br><span>(Xã Hải Đường, Huyện Hải Hậu, Nam Định)</span>
+                            <i class="fa-solid fa-location-dot"></i> <span id="eventGroomPlace"></span>
+                            <br><span id="eventGroomAddress"></span>
                         </div>
-                        <a href="https://goo.gl/maps/example" target="_blank" class="btn-outline">Xem bản đồ</a>
+                        <a id="eventGroomMap" href="#" target="_blank" class="btn-outline">Xem bản đồ</a>
                     </div>
                 </div>
 
@@ -201,15 +159,13 @@
                         <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop" alt="Lễ Vu Quy">
                     </div>
                     <div class="event-info">
-                        <h3>Lễ Vu Quy (Nhà Gái)</h3>
-                        <div class="event-time">
-                            <i class="fa-regular fa-clock"></i> 09:00 - 30/12/2025
-                        </div>
+                        <h3 id="eventBrideTitle"></h3>
+                        <div class="event-time"><i class="fa-regular fa-clock"></i> <span id="eventBrideTime"></span></div>
                         <div class="event-location">
-                            <i class="fa-solid fa-location-dot"></i> Tư gia nhà gái
-                            <br><span>(Xã Xuân Ninh, Huyện Xuân Trường, Nam Định)</span>
+                            <i class="fa-solid fa-location-dot"></i> <span id="eventBridePlace"></span>
+                            <br><span id="eventBrideAddress"></span>
                         </div>
-                        <a href="https://goo.gl/maps/example" target="_blank" class="btn-outline">Xem bản đồ</a>
+                        <a id="eventBrideMap" href="#" target="_blank" class="btn-outline">Xem bản đồ</a>
                     </div>
                 </div>
             </div>
@@ -219,13 +175,16 @@
     <section id="gallery" class="section-padding">
         <div class="container">
              <div class="section-header" data-aos="fade-up">
-                <h2>Album Hình Cưới</h2>
+                <h2>Album Hạnh Phúc</h2>
+                <p>Những khoảnh khắc ngọt ngào nhất</p>
             </div>
+            
             <div class="gallery-grid">
                 <div class="gallery-item"><img src="assets/img/gallery/1.jpg" alt="Photo 1"></div>
                 <div class="gallery-item"><img src="assets/img/gallery/2.jpg" alt="Photo 2"></div>
                 <div class="gallery-item"><img src="assets/img/gallery/3.jpg" alt="Photo 3"></div>
                 <div class="gallery-item"><img src="assets/img/gallery/4.jpg" alt="Photo 4"></div>
+                <div class="gallery-item"><img src="assets/img/gallery/5.jpg" alt="Photo 5"></div>
             </div>
         </div>
     </section>
@@ -239,13 +198,13 @@
             <div class="donate-grid">
                 <div class="donate-card" data-aos="zoom-in-right">
                     <h3>Mừng Chú Rể</h3>
-                    <img src="assets/img/qr-groom.jpg" alt="QR Bank Chú Rể" class="qr-code">
-                    <p class="bank-info">Vietcombank<br>0123456789<br>NGUYEN VAN TAI</p>
+                    <img id="bankGroomQr" src="" alt="QR" class="qr-code">
+                    <p class="bank-info"><span id="bankGroomName"></span><br><span id="bankGroomNum"></span><br><span id="bankGroomAcc"></span></p>
                 </div>
                 <div class="donate-card" data-aos="zoom-in-left">
                     <h3>Mừng Cô Dâu</h3>
-                    <img src="assets/img/qr-bride.jpg" alt="QR Bank Cô Dâu" class="qr-code">
-                    <p class="bank-info">Techcombank<br>9876543210<br>TRAN THI THU THAO</p>
+                    <img id="bankBrideQr" src="" alt="QR" class="qr-code">
+                    <p class="bank-info"><span id="bankBrideName"></span><br><span id="bankBrideNum"></span><br><span id="bankBrideAcc"></span></p>
                 </div>
             </div>
         </div>
@@ -273,8 +232,8 @@
 
     <footer>
         <div class="container">
-            <h3>Văn Tài & Thu Thảo</h3>
-            <p class="date">31.12.2025</p>
+            <h3><span id="footerGroom"></span> & <span id="footerBride"></span></h3>
+            <p class="date" id="footerDate"></p>
             <p class="thank-you">Thank you for being part of our big day!</p>
         </div>
     </footer>
