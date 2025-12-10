@@ -1,101 +1,116 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    /* =======================================
-     * 1. KHỞI TẠO THƯ VIỆN AOS (Hiệu ứng cuộn)
-     * ======================================= */
-    AOS.init({
-        duration: 1000, // Thời gian chạy hiệu ứng (ms)
-        once: true,     // Chỉ chạy 1 lần khi cuộn xuống
-        offset: 100     // Bắt đầu chạy khi cách mép dưới 100px
-    });
+    // 1. KHỞI TẠO AOS
+    AOS.init({ duration: 1000, once: true });
 
-    /* =======================================
-     * 2. XỬ LÝ ĐẾM NGƯỢC (COUNTDOWN)
-     * ======================================= */
-    // CẤU HÌNH NGÀY CƯỚI Ở ĐÂY: (Năm, Tháng - 1, Ngày, Giờ, Phút)
-    // Lưu ý: Tháng trong JS bắt đầu từ 0 (Tháng 1 là 0, Tháng 11 là 10)
-    const weddingDate = new Date(2025, 10, 20, 11, 0, 0).getTime();
+    // 2. XỬ LÝ ĐẾM NGƯỢC (Đúng ngày 31/12/2025)
+    // Lưu ý: Tháng 12 trong JS là số 11
+    const weddingDate = new Date(2025, 11, 31, 11, 0, 0).getTime();
 
     const countdownInterval = setInterval(function () {
         const now = new Date().getTime();
         const distance = weddingDate - now;
 
-        // Tính toán thời gian
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            if(document.getElementById("countdown")) {
+                document.getElementById("countdown").innerHTML = "<h2>Đám cưới viên mãn! ❤</h2>";
+            }
+            return;
+        }
+
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Hiển thị ra HTML
-        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-        // Nếu đã qua ngày cưới
-        if (distance < 0) {
-            clearInterval(countdownInterval);
-            document.getElementById("countdown").innerHTML = "<h2 style='color:#d48888'>Đám cưới đã diễn ra viên mãn! ❤</h2>";
+        if(document.getElementById("days")) {
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }
     }, 1000);
 
-    /* =======================================
-     * 3. XỬ LÝ NHẠC NỀN (MUSIC PLAYER)
-     * ======================================= */
+    // 3. NHẠC NỀN
     const musicBtn = document.getElementById("musicBtn");
     const bgMusic = document.getElementById("bgMusic");
-    const musicIcon = musicBtn.querySelector("i");
     let isPlaying = false;
 
-    // Mặc định trình duyệt chặn tự phát nhạc, cần user tương tác
-    musicBtn.addEventListener("click", function () {
-        if (isPlaying) {
-            bgMusic.pause();
-            musicBtn.classList.add("paused"); // Dừng xoay
-            musicIcon.classList.remove("fa-compact-disc");
-            musicIcon.classList.add("fa-music");
-        } else {
-            bgMusic.play();
-            musicBtn.classList.remove("paused"); // Bắt đầu xoay
-            musicIcon.classList.remove("fa-music");
-            musicIcon.classList.add("fa-compact-disc");
-        }
-        isPlaying = !isPlaying;
-    });
+    if(musicBtn && bgMusic) {
+        musicBtn.addEventListener("click", function () {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.classList.add("paused");
+            } else {
+                bgMusic.play();
+                musicBtn.classList.remove("paused");
+            }
+            isPlaying = !isPlaying;
+        });
+    }
 
-    /* =======================================
-     * 4. MENU MOBILE (HAMBURGER)
-     * ======================================= */
+    // 4. MENU MOBILE
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
 
-    hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("active"); // Hiệu ứng xoay icon (nếu muốn thêm CSS)
-        navMenu.classList.toggle("active");   // Hiện/Ẩn menu
-    });
+    if(hamburger) {
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+    }
 
-    // Đóng menu khi click vào link
     document.querySelectorAll(".nav-menu li a").forEach(n => n.addEventListener("click", () => {
-        hamburger.classList.remove("active");
-        navMenu.classList.remove("active");
+        if(hamburger) {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
     }));
 
-    /* =======================================
-     * 5. XỬ LÝ FORM RSVP
-     * ======================================= */
-    const rsvpForm = document.getElementById("rsvpForm");
-    
-    rsvpForm.addEventListener("submit", function (e) {
-        e.preventDefault(); // Ngăn load lại trang
+    // 5. HIỆU ỨNG TIM RƠI
+    const heartsContainer = document.querySelector('.falling-hearts-container');
 
-        // Lấy dữ liệu (Demo)
-        const name = document.getElementById("name").value;
-        const status = document.getElementById("status").value;
+    function createHeart() {
+        if(!heartsContainer) return;
         
-        // Ở đây bạn có thể tích hợp Google Sheets hoặc EmailJS để lưu dữ liệu thật
-        // Đây là code giả lập thành công:
-        alert(`Cảm ơn ${name} đã xác nhận: ${status === 'yes' ? 'Tham dự' : 'Không thể tham dự'}. Chúng mình đã nhận được thông tin!`);
+        const heart = document.createElement('i');
+        heart.classList.add('fa-solid', 'fa-heart', 'heart-fall');
         
-        rsvpForm.reset(); // Xóa trắng form
-    });
+        // Random vị trí ngang
+        heart.style.left = Math.random() * 100 + 'vw';
+        
+        // Random kích thước (10px - 25px)
+        const size = Math.random() * 15 + 10; 
+        heart.style.fontSize = size + 'px';
+        
+        // Random tốc độ rơi (3s - 8s)
+        const duration = Math.random() * 5 + 3;
+        heart.style.animationDuration = duration + 's';
+
+        // Random màu sắc
+        if (Math.random() > 0.5) {
+             heart.style.color = '#ffccd5'; // Hồng nhạt hơn chút
+        }
+
+        heartsContainer.appendChild(heart);
+
+        // Xóa element sau khi rơi xong
+        setTimeout(() => {
+            heart.remove();
+        }, duration * 1000);
+    }
+
+    // Tạo tim liên tục
+    setInterval(createHeart, 400);
+
+    // 6. FORM RSVP
+    const rsvpForm = document.getElementById("rsvpForm");
+    if(rsvpForm) {
+        rsvpForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Cảm ơn bạn đã gửi lời chúc!");
+            rsvpForm.reset();
+        });
+    }
 });
