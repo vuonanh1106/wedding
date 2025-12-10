@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
             loadWeddingData(data);
             startCountdown(data.weddingDate);
         })
-        .catch(error => console.error('Lỗi: Cần chạy trên Local Server (Live Server) để đọc file JSON', error));
+        .catch(error => console.error('Lỗi: Cần chạy trên Local Server hoặc GitHub Pages để đọc file JSON', error));
 
-    // Hàm điền dữ liệu vào HTML
+    // --- HÀM ĐIỀN DỮ LIỆU ---
     function loadWeddingData(data) {
         // Hero
         document.getElementById('heroGroom').innerText = data.couple.groom.name;
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const d = new Date(data.weddingDate);
         document.getElementById('heroDate').innerText = `${d.getDate()} Tháng ${d.getMonth() + 1} Năm ${d.getFullYear()}`;
 
-        // Couple Info
+        // Couple
         document.getElementById('groomName').innerText = data.couple.groom.name;
         document.getElementById('groomImg').src = data.couple.groom.image;
         document.getElementById('groomJob').innerHTML = `<i class="fa-solid ${data.couple.groom.jobIcon}"></i> ${data.couple.groom.job}`;
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('brideJob').innerHTML = `<i class="fa-solid ${data.couple.bride.jobIcon}"></i> ${data.couple.bride.job}`;
         document.getElementById('brideDesc').innerText = data.couple.bride.desc;
 
-        // Family Info
+        // Family
         document.getElementById('groomFather').innerText = data.family.groom.father;
         document.getElementById('groomMother').innerText = data.family.groom.mother;
         document.getElementById('groomAddress').innerText = data.family.groom.address;
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('brideMother').innerText = data.family.bride.mother;
         document.getElementById('brideAddress').innerText = data.family.bride.address;
 
-        // Events Info
+        // Events
         document.getElementById('eventGroomTitle').innerText = data.events.groom.title;
         document.getElementById('eventGroomTime').innerText = data.events.groom.time;
         document.getElementById('eventGroomPlace').innerText = data.events.groom.place;
@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('eventBrideAddress').innerText = data.events.bride.address;
         document.getElementById('eventBrideMap').href = data.events.bride.mapLink;
 
-        // Story (Timeline)
+        // Story Timeline
         const timelineContainer = document.getElementById('storyTimeline');
         let storyHTML = '';
-        data.story.forEach((item, index) => {
+        data.story.forEach((item) => {
             const aosEffect = item.side === 'left' ? 'fade-right' : 'fade-left';
             storyHTML += `
                 <div class="timeline-item ${item.side}" data-aos="${aosEffect}">
@@ -66,10 +66,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         <span class="time">${item.date}</span>
                         <p>${item.content}</p>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
         timelineContainer.innerHTML = storyHTML;
+
+        // Gallery (Dynamic Loading)
+        const galleryContainer = document.getElementById('galleryContainer');
+        if (galleryContainer && data.gallery) {
+            let galleryHTML = '';
+            for (let i = 1; i <= data.gallery.count; i++) {
+                const aosAnimation = ['fade-up', 'zoom-in', 'flip-left'][Math.floor(Math.random() * 3)];
+                galleryHTML += `
+                    <div class="gallery-item" data-aos="${aosAnimation}">
+                        <img src="${data.gallery.folder}${i}${data.gallery.extension}" alt="Photo ${i}" loading="lazy">
+                    </div>`;
+            }
+            galleryContainer.innerHTML = galleryHTML;
+        }
 
         // Bank
         document.getElementById('bankGroomQr').src = data.couple.groom.bank.qr;
@@ -117,7 +130,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 1000);
     }
 
-    // 4. CÁC HIỆU ỨNG KHÁC (Nhạc, Menu, Tim rơi)
+    // 4. TIM RƠI
+    const heartsContainer = document.querySelector('.falling-hearts-container');
+    function createHeart() {
+        if(!heartsContainer) return;
+        const heart = document.createElement('i');
+        heart.classList.add('fa-solid', 'fa-heart', 'heart-fall');
+        heart.style.left = Math.random() * 100 + 'vw';
+        const size = Math.random() * 15 + 10; 
+        heart.style.fontSize = size + 'px';
+        const duration = Math.random() * 5 + 3;
+        heart.style.animationDuration = duration + 's';
+        if (Math.random() > 0.5) { heart.style.color = '#ffccd5'; }
+        heartsContainer.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, duration * 1000);
+    }
+    setInterval(createHeart, 400);
+
+    // 5. NHẠC & MENU
     const musicBtn = document.getElementById("musicBtn");
     const bgMusic = document.getElementById("bgMusic");
     let isPlaying = false;
@@ -136,25 +166,19 @@ document.addEventListener("DOMContentLoaded", function () {
             hamburger.classList.toggle("active");
             navMenu.classList.toggle("active");
         });
+        document.querySelectorAll(".nav-menu li a").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
     }
-    document.querySelectorAll(".nav-menu li a").forEach(n => n.addEventListener("click", () => {
-        if(hamburger) { hamburger.classList.remove("active"); navMenu.classList.remove("active"); }
-    }));
 
-    // Tim rơi
-    const heartsContainer = document.querySelector('.falling-hearts-container');
-    function createHeart() {
-        if(!heartsContainer) return;
-        const heart = document.createElement('i');
-        heart.classList.add('fa-solid', 'fa-heart', 'heart-fall');
-        heart.style.left = Math.random() * 100 + 'vw';
-        const size = Math.random() * 15 + 10; 
-        heart.style.fontSize = size + 'px';
-        const duration = Math.random() * 5 + 3;
-        heart.style.animationDuration = duration + 's';
-        if (Math.random() > 0.5) { heart.style.color = '#ffccd5'; }
-        heartsContainer.appendChild(heart);
-        setTimeout(() => { heart.remove(); }, duration * 1000);
+    // 6. RSVP FORM
+    const rsvpForm = document.getElementById("rsvpForm");
+    if(rsvpForm) {
+        rsvpForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Cảm ơn bạn đã gửi lời chúc!");
+            rsvpForm.reset();
+        });
     }
-    setInterval(createHeart, 400);
 });
