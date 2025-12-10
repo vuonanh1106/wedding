@@ -46,12 +46,14 @@ body {
     color: var(--primary-dark); 
     margin-bottom: 15px; 
     font-weight: 400;
+    line-height: 1.2;
 }
 .section-header p { 
     font-family: var(--font-serif); 
     font-style: italic; 
     color: #888; 
     font-size: 1.2rem;
+    letter-spacing: 1px;
 }
 
 /* 1. NAVBAR */
@@ -70,7 +72,7 @@ body {
 .hamburger { display: none; cursor: pointer; }
 .bar { display: block; width: 25px; height: 3px; background: #333; margin: 5px auto; transition: 0.3s; }
 
-/* 2. HERO (Gradient Hồng) */
+/* 2. HERO */
 header {
     height: 100vh;
     background: linear-gradient(135deg, #ffe0e9 0%, #f080a0 100%);
@@ -89,7 +91,7 @@ header {
     margin: 10px 0; color: #fff; line-height: 1.1;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.2); 
 }
-.main-title .ampersand { font-family: var(--font-serif); font-size: 3.5rem; font-style: italic; vertical-align: middle; }
+.main-title .ampersand { font-family: var(--font-serif); font-size: 3.5rem; font-style: italic; vertical-align: middle; margin: 0 10px; }
 .wedding-date { 
     font-family: var(--font-body); font-size: 1.4rem; 
     margin-bottom: 40px; font-weight: 400; 
@@ -122,10 +124,28 @@ header {
 .parent-name { font-size: 1.3rem; margin-bottom: 5px; color: var(--text-dark); font-family: var(--font-serif); font-weight: bold; }
 .address { color: #666; font-style: italic; margin-top: 30px; font-size: 1rem; border-top: 1px dashed #eee; padding-top: 20px; font-family: var(--font-body); }
 
-/* 5. TIMELINE & EVENTS */
-.timeline-item::after { background: var(--primary-color); }
-.timeline::after { background: var(--secondary-color); }
+/* 5. TIMELINE */
+#story { background-color: #fff; overflow-x: hidden; }
+.timeline { position: relative; max-width: 1000px; margin: 0 auto; padding: 20px 0; }
+.timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--primary-color); top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; }
+.timeline-item { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; box-sizing: border-box; }
+.timeline-item.left { left: 0; }
+.timeline-item.right { left: 50%; }
+.timeline-img { position: absolute; width: 20px; height: 20px; right: -10px; background-color: #fff; border: 4px solid var(--primary-dark); top: 25px; border-radius: 50%; z-index: 10; }
+.timeline-item.right .timeline-img { left: -10px; }
+.timeline-content { padding: 0; background-color: #fff; position: relative; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; border: 1px solid #eee; }
+.timeline-content:hover { transform: translateY(-5px); }
+.story-img-box { width: 100%; height: 200px; overflow: hidden; }
+.story-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.timeline-content:hover .story-img-box img { transform: scale(1.1); }
+.story-text { padding: 20px; text-align: left; }
+.story-text h3 { font-family: var(--font-serif); font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 5px; font-weight: 700; }
+.story-text .date { display: inline-block; font-size: 0.9rem; color: #fff; background: var(--primary-color); padding: 2px 10px; border-radius: 15px; margin-bottom: 10px; font-weight: 600; }
+.story-text p { font-size: 0.95rem; color: #666; line-height: 1.6; }
+.timeline-item.left .timeline-content::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: -10px; border: medium solid white; border-width: 10px 0 10px 10px; border-color: transparent transparent transparent #fff; }
+.timeline-item.right .timeline-content::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: -10px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent #fff transparent transparent; }
 
+/* 6. EVENTS */
 .event-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
 .event-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.08); width: 400px; text-align: center; transition: 0.3s; }
 .event-card:hover { transform: translateY(-5px); }
@@ -133,62 +153,37 @@ header {
 .event-info { padding: 35px 30px; }
 .event-info h3 { font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: 15px; font-weight: 700; color: var(--text-dark); }
 .event-time, .event-location { font-family: var(--font-body); font-size: 1.05rem; color: #666; margin-bottom: 10px; }
-
-.btn-outline { 
-    display: inline-block; padding: 12px 30px; 
-    border: 2px solid var(--primary-dark); 
-    color: var(--primary-dark); text-decoration: none; 
-    border-radius: 50px; margin-top: 25px; 
-    transition: 0.3s; font-weight: 700; 
-    font-size: 0.9rem; font-family: var(--font-body); 
-    text-transform: uppercase; letter-spacing: 1px;
-}
+.btn-outline { display: inline-block; padding: 12px 30px; border: 2px solid var(--primary-dark); color: var(--primary-dark); text-decoration: none; border-radius: 50px; transition: 0.3s; font-weight: 700; font-size: 0.9rem; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
 .btn-outline:hover { background: var(--primary-dark); color: #fff; box-shadow: 0 10px 20px rgba(240, 128, 160, 0.3); }
 
-/* 6. ALBUM ẢNH */
+/* 7. GALLERY */
 .gallery-grid { column-count: 3; column-gap: 20px; padding: 0 10px; }
 .gallery-item { break-inside: avoid; margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); background: #f0f0f0; min-height: 100px; }
 .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
 .gallery-item:hover img { transform: scale(1.03); filter: brightness(1.05); }
 
-/* 7. DONATE */
+/* 8. DONATE */
 .donate-grid { display: flex; justify-content: center; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
 .donate-card { background: #fff; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.08); border: 1px solid #fff; }
 .donate-card h3 { font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 20px; color: var(--primary-dark); font-weight: 700; }
 .qr-code { width: 180px; height: 180px; margin: 20px 0; border: 5px solid var(--secondary-color); border-radius: 12px; }
 .bank-info { font-family: var(--font-body); font-size: 1.1rem; line-height: 1.8; color: #444; font-weight: 600; }
 
-/* 8. RSVP */
-#rsvp { 
-    background: linear-gradient(rgba(240, 128, 160, 0.7), rgba(240, 128, 160, 0.7)), url('../../assets/img/rsvp-bg.jpg'); 
-    background-size: cover; background-position: center; color: #fff; text-align: center; 
-}
+/* 9. RSVP */
+#rsvp { background: linear-gradient(rgba(240, 128, 160, 0.7), rgba(240, 128, 160, 0.7)), url('../../assets/img/rsvp-bg.jpg'); background-size: cover; background-position: center; color: #fff; text-align: center; }
 #rsvpForm { background: #fff; padding: 50px 40px; max-width: 550px; margin: 40px auto 0; border-radius: 20px; color: #333; box-shadow: 0 25px 50px rgba(0,0,0,0.25); }
 .form-group { margin-bottom: 20px; }
-input, select, textarea { 
-    width: 100%; padding: 15px 20px; 
-    border: 2px solid #eee; border-radius: 10px; 
-    font-family: var(--font-body); font-size: 1rem; 
-    background: #f8f9fa; transition: 0.3s; color: #333;
-}
+input, select, textarea { width: 100%; padding: 15px 20px; border: 2px solid #eee; border-radius: 10px; font-family: var(--font-body); font-size: 1rem; background: #f8f9fa; transition: 0.3s; color: #333; }
 input:focus, select:focus, textarea:focus { border-color: var(--primary-color); outline: none; background: #fff; }
-.btn-submit { 
-    width: 100%; padding: 18px; 
-    background: var(--primary-color); color: #fff; 
-    border: none; border-radius: 10px; 
-    cursor: pointer; font-weight: 800; font-size: 1.1rem; 
-    letter-spacing: 2px; transition: 0.3s; 
-    font-family: var(--font-body); text-transform: uppercase; 
-}
+.btn-submit { width: 100%; padding: 18px; background: var(--primary-color); color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 1.1rem; letter-spacing: 2px; transition: 0.3s; font-family: var(--font-body); text-transform: uppercase; }
 .btn-submit:hover { background: var(--primary-dark); box-shadow: 0 10px 20px rgba(240, 128, 160, 0.4); transform: translateY(-3px); }
 
-/* 9. FOOTER */
+/* 10. FOOTER & ANIMATION */
 footer { background: #333; color: #fff; text-align: center; padding: 60px 20px; }
 footer h3 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 15px; color: var(--primary-color); }
 .date { font-family: var(--font-body); letter-spacing: 4px; margin-bottom: 20px; display: block; font-weight: 300; opacity: 0.8; }
 .thank-you { font-family: var(--font-heading); font-size: 2rem; color: #fff; margin-top: 10px; }
 
-/* Extras */
 .music-control { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary-color); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 99; animation: rotate 4s linear infinite; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-size: 1.2rem; }
 .music-control.paused { animation-play-state: paused; background: #ccc; }
 @keyframes rotate { 100% { transform: rotate(360deg); } }
@@ -210,4 +205,9 @@ footer h3 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 15
     .nav-menu.active { left: 0; }
     .gallery-grid { column-count: 1; }
     .section-header h2 { font-size: 3rem; }
+    .timeline::after { left: 31px; }
+    .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+    .timeline-item.left, .timeline-item.right { left: 0%; }
+    .timeline-item.left .timeline-img, .timeline-item.right .timeline-img { left: 21px; }
+    .timeline-item.right .timeline-content::before, .timeline-item.left .timeline-content::before { left: -10px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent #fff transparent transparent; }
 }
