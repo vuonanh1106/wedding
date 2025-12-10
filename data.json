@@ -2,7 +2,7 @@
     "weddingDate": "2025-12-31T11:00:00",
     "couple": {
         "groom": {
-            "name": "Mai Văn Tài",
+            "name": "Văn Tài",
             "image": "assets/img/groom.jpg",
             "job": "Kỹ sư Điện Lực",
             "jobIcon": "fa-bolt",
@@ -15,7 +15,7 @@
             }
         },
         "bride": {
-            "name": "Lê Phương Thảo",
+            "name": "Phương Thảo",
             "image": "assets/img/bride.jpg",
             "job": "Giáo viên Tiếng Anh",
             "jobIcon": "fa-book-open",
