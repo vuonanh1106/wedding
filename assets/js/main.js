@@ -70,18 +70,52 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         timelineContainer.innerHTML = storyHTML;
 
-        // Gallery (Dynamic Loading)
+        // --- XỬ LÝ GALLERY (LOAD MORE) ---
         const galleryContainer = document.getElementById('galleryContainer');
+        const viewMoreBtn = document.getElementById('viewMoreBtn');
+        
         if (galleryContainer && data.gallery) {
-            let galleryHTML = '';
-            for (let i = 1; i <= data.gallery.count; i++) {
-                const aosAnimation = ['fade-up', 'zoom-in', 'flip-left'][Math.floor(Math.random() * 3)];
-                galleryHTML += `
-                    <div class="gallery-item" data-aos="${aosAnimation}">
-                        <img src="${data.gallery.folder}${i}${data.gallery.extension}" alt="Photo ${i}" loading="lazy">
-                    </div>`;
+            const totalImages = data.gallery.count;
+            const imagesPerPage = 6; 
+            let currentImageCount = 0;
+
+            function loadImages(count) {
+                let htmlToAdd = '';
+                const start = currentImageCount + 1;
+                const end = Math.min(currentImageCount + count, totalImages);
+
+                for (let i = start; i <= end; i++) {
+                    const aosAnimation = ['fade-up', 'zoom-in', 'flip-left'][Math.floor(Math.random() * 3)];
+                    htmlToAdd += `
+                        <div class="gallery-item" data-aos="${aosAnimation}">
+                            <img src="${data.gallery.folder}${i}${data.gallery.extension}" alt="Wedding Photo ${i}" loading="lazy">
+                        </div>
+                    `;
+                }
+
+                galleryContainer.insertAdjacentHTML('beforeend', htmlToAdd);
+                currentImageCount = end;
+
+                // Ẩn nút nếu đã hiện hết ảnh
+                if (currentImageCount >= totalImages) {
+                    if(viewMoreBtn) viewMoreBtn.style.display = 'none';
+                } else {
+                    if(viewMoreBtn) viewMoreBtn.style.display = 'inline-block';
+                }
+                
+                // Refresh hiệu ứng AOS
+                setTimeout(() => { AOS.refresh(); }, 500); 
             }
-            galleryContainer.innerHTML = galleryHTML;
+
+            // Load lần đầu
+            loadImages(imagesPerPage);
+
+            // Bắt sự kiện click
+            if(viewMoreBtn) {
+                viewMoreBtn.addEventListener('click', function() {
+                    loadImages(imagesPerPage);
+                });
+            }
         }
 
         // Bank
