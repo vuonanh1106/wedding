@@ -63,6 +63,7 @@
     "events": {
         "groom": {
             "title": "Tiệc Cưới Nhà Trai",
+            "image": "assets/img/event-groom.jpg", 
             "time": "11:00 - 31/12/2025",
             "place": "Tư gia nhà trai",
             "address": "Thôn Nội Chế, Xã Hiến Khánh, Tỉnh Ninh Bình",
@@ -70,6 +71,7 @@
         },
         "bride": {
             "title": "Lễ Vu Quy (Nhà Gái)",
+            "image": "assets/img/event-bride.jpg",
             "time": "09:00 - 30/12/2025",
             "place": "Tư gia nhà gái",
             "address": "164 Đ. Thượng Hữu, P. Nam Định, Tỉnh Ninh Bình",
