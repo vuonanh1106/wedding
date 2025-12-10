@@ -2,9 +2,13 @@
 /* 0. RESET & CHUNG */
 /* ======================================= */
 :root {
-    --primary-color: #d48888; /* Màu hồng Pastel chính */
-    --secondary-color: #e8d0d0; /* Màu nền nhẹ */
-    --text-dark: #333;
+    /* --- MÀU MỚI --- */
+    --primary-color: #ffabc2; /* Hồng phấn chủ đạo (Soft Pink) - Dùng cho tiêu đề, nút, icon tim */
+    --secondary-color: #e3f2fd; /* Xanh da trời siêu nhẹ (Soft Blue) - Dùng cho nền các section xen kẽ */
+    --bg-gradient: linear-gradient(135deg, #fff5f8 0%, #f0f8ff 100%); /* Gradient nền tổng thể */
+    /* ---------------- */
+
+    --text-dark: #555; /* Màu chữ xám đậm cho nhẹ nhàng hơn đen */
     --text-light: #fff;
     --font-heading: 'Great Vibes', cursive;
     --font-body: 'Montserrat', sans-serif;
@@ -21,11 +25,13 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Cập nhật nền cho body để có hiệu ứng chuyển màu nhẹ */
 body {
     font-family: var(--font-body);
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: #fcfcfc;
+    background: var(--bg-gradient); /* Sử dụng gradient nền mới */
+    background-attachment: fixed; /* Giữ nền cố định khi cuộn rất đẹp */
 }
 
 .container {
@@ -40,6 +46,8 @@ body {
 
 .bg-gray {
     background-color: var(--secondary-color);
+    /* Thêm chút hiệu ứng chuyển sắc nhẹ cho các khối nền xanh */
+    background-image: linear-gradient(to bottom, #e3f2fd, #edf7fc);
 }
 
 .section-header {
